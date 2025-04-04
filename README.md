@@ -1,6 +1,6 @@
 # XYZ Demo Playwright Test Automation
 
-## How To Run This Tests on Local Machine
+## How To Run Tests on Local Machine
 1. Clone this repository
 2. Inside the project folder, send below commands in the terminal to run all the tests
     ```
