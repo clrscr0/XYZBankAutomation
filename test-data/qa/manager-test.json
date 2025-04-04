@@ -1,0 +1,22 @@
+{
+    "customerToAdd": {
+        "firstName": "Johnny",
+        "lastName": "Bravo"
+    },
+    "openAccountCustomer":
+    {
+        "customer": {
+            "firstName": "Johnny",
+            "lastName": "Bravo"
+        },
+        "currency" : "Dollar"
+    },
+    "searchAccount":
+    {
+        "accountToSearch": "1007 1008 1009",
+        "customer": {
+            "firstName": "Ron",
+            "lastName": "Weasly"
+        }
+    }
+}

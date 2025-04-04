@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from '@playwright/test'
 import { CustomerDashboardPage } from './CustomerDashboardPage';
-import { User } from '../data-models/user';
+import { Customer } from '../data-models/customer';
 
 export class CustomerLoginPage
 {
@@ -14,9 +14,9 @@ export class CustomerLoginPage
         this.loginBtn = page.locator("//button[. = 'Login']")
     }
 
-    async loginAsCustomer(user : User): Promise<CustomerDashboardPage>
+    async loginAsCustomer(customer : Customer): Promise<CustomerDashboardPage>
         {
-            await this.nameDp.selectOption(user.name)
+            await this.nameDp.selectOption(customer.firstName + " " + customer.lastName)
             await this.loginBtn.click();
 
             return new CustomerDashboardPage(this.page);
