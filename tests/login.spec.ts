@@ -17,13 +17,13 @@ test.describe('Customer Login Functionality', () => {
         customerLogingPage = await landingPage.gotoCustomerLogin()
     });
 
-    test.skip('[1] Customer can successfully login', async ({ page }) => {
+    test('[1] Customer can successfully login', async ({ page }) => {
         const customerDashboardPage = await customerLogingPage.loginAsCustomer(customer)      
         await customerDashboardPage.waitForLoadingComplete();   
         expect(page.url().includes("account")).toBe(true);
     });
 
-    test.skip('[2] Customer can successfully logout', async ({ page }) => {
+    test('[2] Customer can successfully logout', async ({ page }) => {
         const customerDashboardPage = await customerLogingPage.loginAsCustomer(customer) 
         customerLogingPage = await customerDashboardPage.header.clickLogout()
         expect(page.url().includes("customer")).toBe(true);

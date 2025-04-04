@@ -25,10 +25,10 @@ export class BankManagerPage
         this.firstNameInput = page.locator('//input[@placeholder="First Name"]')
         this.lastNameInput = page.locator('//input[@placeholder="Last Name"]')
         this.postCodeInput = page.locator('//input[@placeholder="Post Code"]')
-        this.addCustomerBtn = page.locator('//input[.="Add Customer"]')
+        this.addCustomerBtn = page.locator('//button[.="Add Customer"]')
         this.customerDp = page.locator('#userSelect')
         this.currencyDp = page.locator('#currency')
-        this.processBtn = page.locator('//input[.="Process"]')
+        this.processBtn = page.locator('//button[.="Process"]')
         this.searchInput = page.locator('//input[@placeholder="Search Customer"]')
     }
 
@@ -47,10 +47,10 @@ export class BankManagerPage
         await this.openAccountMainBtn.click()
         await this.customerDp.selectOption(customer.firstName + " " + customer.lastName)
         await this.currencyDp.selectOption(currency)
-        await this.addCustomerBtn.click({timeout: 2000})
+        await this.processBtn.click({timeout: 2000})
     }
 
-    async searchCustomer(expectedCustomer: Customer, searchTerm: string)
+    async searchCustomer(searchTerm: string)
     {
         await this.customersMainBtn.click()
         await this.searchInput.fill(searchTerm)
@@ -62,9 +62,9 @@ export class BankManagerPage
         const rows: Locator = this.page.locator('//tbody/tr');
 
         for (const row of await rows.all()) {
-            const firstName = await row.locator('.td[1]').innerText();
-            const lastName = await row.locator('.td[2]').innerText();
-            const postCode = await row.locator('.td[3]').innerText();
+            const firstName = await row.locator('td:nth-child(1)').innerText();
+            const lastName = await row.locator('td:nth-child(2)').innerText();
+            const postCode = await row.locator('td:nth-child(3)').innerText();
 
             customers.push({
                 firstName,

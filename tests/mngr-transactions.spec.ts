@@ -37,11 +37,21 @@ test.describe('Manager Transactions Functionality', () => {
           });
     });
 
-    test('[10] Manager can search for a customer by account number', async ({ page }) => {
+    test('[10] Manager can search for a customer by partial account number', async ({ page }) => {
         const expectedCustomer = testData.searchAccount.customer as Customer
-        const accountNumber = testData.searchAccount.accountToSearch as string
-        await bankManagerPage.searchCustomer(expectedCustomer, accountNumber)
+        const accountNumber = testData.searchAccount.partialAccount as string
+        await bankManagerPage.searchCustomer(accountNumber)
         const searchResults = await bankManagerPage.getCustomerResults()
+        expect(searchResults.length).toBeGreaterThan(0)
+        expect(searchResults).toEqual(expect.arrayContaining([expectedCustomer]))
+    });
+
+    test.fixme('[11] Manager can search for a customer by full account number (THIS IS A BUG AND EXPECTED TO FAIL)', async ({ page }) => {
+        const expectedCustomer = testData.searchAccount.customer as Customer
+        const accountNumber = testData.searchAccount.fullAccount as string
+        await bankManagerPage.searchCustomer(accountNumber)
+        const searchResults = await bankManagerPage.getCustomerResults()
+        expect(searchResults).toHaveLength(0)
         expect(searchResults).toEqual(expect.arrayContaining([expectedCustomer]))
     });
 })

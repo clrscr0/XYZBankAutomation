@@ -1,22 +1,25 @@
 {
     "customerToAdd": {
         "firstName": "Johnny",
-        "lastName": "Bravo"
+        "lastName": "Bravo",
+        "postCode": "Z012345"
     },
     "openAccountCustomer":
     {
         "customer": {
-            "firstName": "Johnny",
-            "lastName": "Bravo"
+            "firstName": "Harry",
+            "lastName": "Potter"
         },
         "currency" : "Dollar"
     },
     "searchAccount":
     {
-        "accountToSearch": "1007 1008 1009",
+        "fullAccount": "1007 1008 1009",
+        "partialAccount": "1007",
         "customer": {
             "firstName": "Ron",
-            "lastName": "Weasly"
+            "lastName": "Weasly",
+            "postCode": "E55555"
         }
     }
 }

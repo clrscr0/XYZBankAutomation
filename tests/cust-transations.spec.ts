@@ -9,7 +9,7 @@ test.describe('Customer Transactions Functionality', () => {
     let customer: Customer
 
     test.beforeEach(async ({ page, testDataDir }) => {
-        const testData = require(`${testDataDir}/login.json`)        
+        const testData = require(`${testDataDir}/login-test.json`)        
         customer = testData.customer
 
         const landingPage = new LandingPage(page)
