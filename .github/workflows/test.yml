@@ -27,7 +27,7 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Run Playwright tests on qa
-      run: npx playwright test --project qa --reporter=github
+      run: npx playwright test --project qa --reporter=github,list
 
     - name: Upload Playwright report
       if: always() # Always run this step, even if tests fail

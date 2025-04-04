@@ -24,6 +24,7 @@ export default defineConfig<TestOptions>({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter:[
+    ['github'],
     ['list'],
     ['html', { open: 'never' }],
     ['junit', {outputFile: 'test-results/results.xml'}]
