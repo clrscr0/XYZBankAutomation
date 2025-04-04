@@ -33,7 +33,7 @@ export default defineConfig<TestOptions>({
     trace: 'retain-on-first-failure',
     video: 'retain-on-failure',
     screenshot: 'on', // Or 'on' to capture for every test
-  },  
+  },
 
   /* Configure projects for major browsers */
   projects: [

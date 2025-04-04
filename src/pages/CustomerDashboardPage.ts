@@ -9,11 +9,11 @@ export class CustomerDashboardPage
     constructor(page : Page)
     {
         this.page = page
-        this.header = new HeaderNavigation(page)        
+        this.header = new HeaderNavigation(page)     
     }
 
-    async hasUrl(url : string): Promise<boolean>
-    {
-        return this.page.url().includes(url)
+    async waitForLoadingComplete()
+    {        
+        await this.page.waitForSelector("//button[. = 'Logout']")
     }
 }

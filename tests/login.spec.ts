@@ -2,23 +2,30 @@ import { expect } from '@playwright/test';
 import { LandingPage } from '../src/pages/LandingPage';
 import { test } from '../test-options';
 import { User } from '../src/data-models/user';
+import { CustomerLoginPage } from '../src/pages/CustomerLoginPage';
 
-test.describe('Login Functionality', () => {
+test.describe('Customer Login Functionality', () => {
     let landingPage: LandingPage
-    let testData: any
+    let customerLogingPage: CustomerLoginPage
+    let user: User
 
     test.beforeEach(async ({ page, testDataDir }) => {
-        testData = require(`${testDataDir}/login.json`)
+        const testData = require(`${testDataDir}/login.json`)
         landingPage = new LandingPage(page)
-        landingPage.navigate()
+        landingPage.navigate()        
+        user = testData.customer
+        customerLogingPage = await landingPage.gotoCustomerLogin()
     });
 
     test('[1] Customer can successfully login', async ({ page }) => {
-        const user = testData.customer as User
-        const customerLogingPage = await landingPage.gotoCustomerLogin()
-        const customerDashboardPage = await customerLogingPage.loginAsCustomer(user)         
-        expect(await customerDashboardPage.hasUrl("account"))
+        const customerDashboardPage = await customerLogingPage.loginAsCustomer(user)      
+        await customerDashboardPage.waitForLoadingComplete();   
+        expect(page.url().includes("account")).toBe(true);
+    });
 
-        await customerDashboardPage.header.clickLogout()
+    test('[2] Customer can successfully logout', async ({ page }) => {
+        const customerDashboardPage = await customerLogingPage.loginAsCustomer(user) 
+        customerLogingPage = await customerDashboardPage.header.clickLogout()
+        expect(page.url().includes("customer")).toBe(true);
     });
 });

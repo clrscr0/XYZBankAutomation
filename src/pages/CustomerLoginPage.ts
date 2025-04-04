@@ -11,7 +11,7 @@ export class CustomerLoginPage
     constructor(page: Page) {
         this.page = page
         this.nameDp = page.locator("#userSelect")
-        this.loginBtn = this.page.locator("//button[. = 'Login']")
+        this.loginBtn = page.locator("//button[. = 'Login']")
     }
 
     async loginAsCustomer(user : User): Promise<CustomerDashboardPage>
